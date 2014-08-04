@@ -10,11 +10,11 @@ end
 -- Delete - if exists
 function File:delete()
   -- Does it even exist?
-  if ~(fs.exists(self.path))
+  if not fs.exists(self.path)
     return false, "No such file or directory"
   -- ...and is it writable?
   if fs.isReadOnly(self.path)
-    return false, "Access denied"
+    return false, "Only read access allowed"
   -- Alright, do it.
   fs.delete(self.path)
   return true, "Operation successful"
