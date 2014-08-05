@@ -13,18 +13,21 @@ end
 -- Delete - if exists
 function File:delete()
   -- Does it even exist?
-  if not fs.exists(self.path)
+  if not fs.exists(self.path) then
     return false, "No such file or directory"
+  end
   -- ...and is it writable?
-  if fs.isReadOnly(self.path)
+  if fs.isReadOnly(self.path) then
     return false, "Only read access allowed"
+  end
   -- Alright, do it.
   fs.delete(self.path)
   return true, "Operation successful"
 end
 
 function File:run(...)
-  if not fs.exists(self.path)
+  if not fs.exists(self.path) then
     return false, "No such file or directory"
+  end
   shell.run(self.path, unpack(arg))
 end
