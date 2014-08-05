@@ -6,7 +6,8 @@ require = shell.run
 -- > file.delete = bind(fs.delete, file.path)
 
 function bind(f, ...)
-  return function()
-    return f( unpack(arg) )
+  higherArg = arg
+  return function(...)
+    return f( unpack(higherArg), unpack(arg) )
   end
 end
