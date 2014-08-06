@@ -11,8 +11,8 @@
 -- f() <- deletes "file" from filesystem
 
 function bind(f, ...)
-  local higherArg = arg
+  local bound = arg
   return function(...)
-    return f( unpack(higherArg), unpack(arg) )
+    return f( unpack(bound), unpack(arg) )
   end
 end
