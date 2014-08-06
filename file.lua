@@ -18,7 +18,7 @@ function File:delete()
   end
   -- ...and is it writable?
   if fs.isReadOnly(self.path) then
-    return false, "Only read access allowed"
+    return false, "Write access denied"
   end
   -- Alright, do it.
   fs.delete(self.path)
@@ -30,4 +30,13 @@ function File:run(...)
     return false, "No such file or directory"
   end
   shell.run(self.path, unpack(arg))
+end
+
+function File:move(dest)
+  if fs.isReadOnly(self.path) then
+    return false, "Read-only files cannot be moved"
+  end
+  if fs.isReadOnly(dest) then
+    return false, "Destination not writable"
+  end
 end
