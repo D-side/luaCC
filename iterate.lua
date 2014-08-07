@@ -11,16 +11,16 @@ function range(a, b, f)
 end
 
 function values(t, f)
-	local r
+  local r
   for k, v in pairs(t) do
     r[k] = f(v)
   end
 end
 
 in_place = {
-	values = function(t, f)
-		for k, v in pairs(t) do
-    	t[k] = f(v)
-  	end
-	end,
+  values = function(t, f)
+    for k, v in pairs(t) do
+      t[k] = f(v)
+    end
+  end,
 }
