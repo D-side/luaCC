@@ -10,8 +10,17 @@ function range(a, b, f)
   end
 end
 
-function map(t, f)
+function values(t, f)
+	local r
   for k, v in pairs(t) do
-    t[k] = f(v)
+    r[k] = f(v)
   end
 end
+
+in_place = {
+	values = function(t, f)
+		for k, v in pairs(t) do
+    	t[k] = f(v)
+  	end
+	end,
+}

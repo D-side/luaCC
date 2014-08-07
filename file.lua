@@ -1,6 +1,5 @@
 -- A class representing a file in a more OOPish manner
 -- ComputerCraft 1.5.8, assuming advanced (golden) computer
-
 File = {}
 
 -- Merely a ghost of an existing file!
@@ -29,7 +28,7 @@ function File:run(...)
   if not fs.exists(self.path) then
     return false, "No such file or directory"
   end
-  shell.run(self.path, unpack(arg))
+  return true, shell.run(self.path, unpack(arg))
 end
 
 function File:move(dest)
@@ -39,4 +38,5 @@ function File:move(dest)
   if fs.isReadOnly(dest) then
     return false, "Destination not writable"
   end
+  return true, fs.move(dest)
 end
